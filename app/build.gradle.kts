@@ -49,12 +49,6 @@ android {
             excludes += "META-INF/gradle/incremental.annotation.processors"
         }
     }
-
-    configurations.all {
-        resolutionStrategy {
-            force("org.jetbrains.kotlin:kotlin-stdlib:1.9.0")
-        }
-    }
 }
 
 dependencies {
