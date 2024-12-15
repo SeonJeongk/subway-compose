@@ -49,9 +49,20 @@ android {
             excludes += "META-INF/gradle/incremental.annotation.processors"
         }
     }
+
+    configurations.all {
+        resolutionStrategy {
+            force("org.jetbrains.kotlin:kotlin-stdlib:1.9.0")
+        }
+    }
 }
 
 dependencies {
+
+    implementation(project(":data"))
+    implementation(project(":domain"))
+    implementation(project(":feature:home"))
+    implementation(project(":feature:detail"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -61,7 +72,6 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation(libs.mavericks)
     implementation(libs.bundles.hilt)
 
     testImplementation(libs.junit)
