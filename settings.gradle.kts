@@ -21,5 +21,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "Subway"
 include(":app")
+include(":feature:detail")
+include(":feature:home")
 include(":domain")
 include(":data")
