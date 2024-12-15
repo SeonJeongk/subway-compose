@@ -1,6 +1,6 @@
 plugins {
-    alias(libs.plugins.androidDynamicFeature)
-    alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.android.dynamic.feature)
+    alias(libs.plugins.kotlin.android)
 }
 android {
     namespace = "com.example.home"
@@ -14,10 +14,6 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
         }
     }
 }
