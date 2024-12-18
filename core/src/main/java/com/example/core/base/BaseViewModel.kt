@@ -26,11 +26,6 @@ abstract class BaseViewModel<Event : UiEvent, State : UiState, Effect : UiSideEf
     val currentState: State
         get() = _uiState.value
 
-    fun setEvent(event : Event) {
-        val newEvent = event
-        viewModelScope.launch { _event.emit(newEvent) }
-    }
-
     protected fun updateState(reduce: State.() -> State) {
         val newState = currentState.reduce()
         _uiState.value = newState
@@ -41,4 +36,11 @@ abstract class BaseViewModel<Event : UiEvent, State : UiState, Effect : UiSideEf
         viewModelScope.launch { _effect.send(effectValue) }
     }
 
+    protected abstract suspend fun handleEvent(event: Event)
+
+    fun dispatchEvent(event: Event) {
+        viewModelScope.launch {
+            handleEvent(event)
+        }
+    }
 }
