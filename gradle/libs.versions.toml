@@ -66,3 +66,4 @@ hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 [bundles]
 coroutine = ["coroutine-core", "coroutine-android"]
 hilt = ["hilt-android", "hilt-compiler"]
+compose = ["androidx-ui", "androidx-ui-graphics", "androidx-ui-tooling", "androidx-ui-tooling-preview"]
