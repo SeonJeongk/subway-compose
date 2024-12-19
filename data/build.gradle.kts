@@ -1,6 +1,13 @@
+import java.io.FileInputStream
+import java.util.Properties
+
+val properties = Properties()
+properties.load(FileInputStream("$rootDir/local.properties"))
+
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -12,6 +19,9 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+
+        buildConfigField("String", "BASE_URL", properties.getProperty("baseUrl"))
+        buildConfigField("String", "API_KEY", properties.getProperty("apiKey"))
     }
 
     buildTypes {
@@ -30,14 +40,19 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        buildConfig = true
+    }
 }
 
 dependencies {
 
+    implementation(project(":core"))
     implementation(project(":domain"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
+    implementation(libs.bundles.hilt)
     implementation(libs.material)
     implementation(libs.retrofit)
     implementation(libs.serialization)
