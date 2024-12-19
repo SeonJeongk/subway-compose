@@ -20,6 +20,7 @@ android {
         consumerProguardFiles("consumer-rules.pro")
 
         buildConfigField("String", "BASE_URL", properties.getProperty("baseUrl"))
+        buildConfigField("String", "API_KEY", properties.getProperty("apiKey"))
     }
 
     buildTypes {
