@@ -7,6 +7,7 @@ properties.load(FileInputStream("$rootDir/local.properties"))
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -51,6 +52,7 @@ dependencies {
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
+    implementation(libs.bundles.hilt)
     implementation(libs.material)
     implementation(libs.retrofit)
     implementation(libs.serialization)
