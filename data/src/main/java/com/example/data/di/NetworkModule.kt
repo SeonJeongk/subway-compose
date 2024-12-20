@@ -1,4 +1,4 @@
-package com.example.subway.di
+package com.example.data.di
 
 import com.example.data.BuildConfig
 import com.example.data.config.ApiKeyInterceptor
@@ -27,6 +27,12 @@ object NetworkModule {
             level =
                 if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
         }
+    }
+
+    @Provides
+    @Singleton
+    fun provideApiKeyInterceptor(): ApiKeyInterceptor {
+        return ApiKeyInterceptor(BuildConfig.API_KEY)
     }
 
     @Provides

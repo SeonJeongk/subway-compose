@@ -1,19 +1,18 @@
 package com.example.data.config
 
-import android.util.Log
-import com.example.data.BuildConfig
-import okhttp3.HttpUrl
 import okhttp3.Interceptor
 import okhttp3.Response
 
-class ApiKeyInterceptor : Interceptor {
+class ApiKeyInterceptor private constructor(
+    private val apiKey: String
+) : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val originalRequest = chain.request()
-        val originalUrl: HttpUrl = originalRequest.url()
+        val originalUrl = originalRequest.url
 
         val newUrl = originalUrl.newBuilder()
-            .addPathSegment(BuildConfig.API_KEY)
+            .addPathSegment(apiKey)
             .addPathSegment("json")
             .build()
 
@@ -23,5 +22,10 @@ class ApiKeyInterceptor : Interceptor {
 
         return chain.proceed(newRequest)
     }
-}
 
+    companion object {
+        operator fun invoke(apiKey: String): ApiKeyInterceptor {
+            return ApiKeyInterceptor(apiKey)
+        }
+    }
+}
