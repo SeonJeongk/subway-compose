@@ -51,12 +51,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
-        val json = Json {
-            ignoreUnknownKeys = true // JSON에 알 수 없는 키가 있어도 무시
-            isLenient = true // 유연한 파싱 허용
-        }
-
+    fun provideRetrofit(okHttpClient: OkHttpClient, json: Json): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
             .client(okHttpClient)
