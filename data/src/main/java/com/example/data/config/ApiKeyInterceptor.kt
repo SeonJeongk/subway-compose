@@ -12,8 +12,16 @@ class ApiKeyInterceptor private constructor(
         val originalUrl = originalRequest.url
 
         val newUrl = originalUrl.newBuilder()
-            .addPathSegment(apiKey)
-            .addPathSegment("json")
+            .encodedPath(
+                // format: BASE_URL/{API_KEY}/json
+                buildString {
+                    append("/")
+                    append(apiKey)
+                    append("/")
+                    append("json")
+                    append(originalUrl.encodedPath)
+                },
+            )
             .build()
 
         val newRequest = originalRequest.newBuilder()
