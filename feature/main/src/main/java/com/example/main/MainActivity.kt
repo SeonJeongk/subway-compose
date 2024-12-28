@@ -1,4 +1,4 @@
-package com.example.subway
+package com.example.main
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
