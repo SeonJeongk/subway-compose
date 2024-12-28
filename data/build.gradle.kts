@@ -7,7 +7,8 @@ properties.load(FileInputStream("$rootDir/local.properties"))
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.hilt)
+    id("com.google.dagger.hilt.android")
+    id("kotlin-kapt")
 }
 
 android {
@@ -60,4 +61,5 @@ dependencies {
     implementation(libs.serialization)
     implementation(libs.serialization.converter)
     implementation(libs.bundles.coroutine)
+    kapt(libs.hilt.compiler)
 }
