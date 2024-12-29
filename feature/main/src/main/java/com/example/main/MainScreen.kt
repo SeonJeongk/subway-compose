@@ -14,7 +14,7 @@ import com.example.home.HomeScreen
 
 enum class MainScreenRoute(val route: String) {
     HOME("home"),
-    DETAIL("detail")
+    DETAIL("detail/{subwayLine}")
 }
 
 @Composable
@@ -31,11 +31,16 @@ internal fun MainScreen(
                 modifier = Modifier.padding(padding)
             ) {
                 composable(route = MainScreenRoute.HOME.route) {
-                    HomeScreen()
+                    HomeScreen(
+                        onSubwayLineSelected = { subwayLine ->
+                            navController.navigate("detail/$subwayLine")
+                        }
+                    )
                 }
 
-                composable(route = MainScreenRoute.DETAIL.route) {
-                    DetailScreen()
+                composable(route = MainScreenRoute.DETAIL.route) { backStackEntry ->
+                    val subwayLine = backStackEntry.arguments?.getString("subwayLine")
+                    DetailScreen(subwayLine = subwayLine)
                 }
             }
         },
