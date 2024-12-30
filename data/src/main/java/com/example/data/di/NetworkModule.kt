@@ -2,6 +2,7 @@ package com.example.data.di
 
 import com.example.data.BuildConfig
 import com.example.data.config.ApiKeyInterceptor
+import com.example.data.service.SubwayService
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
@@ -20,6 +21,10 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
+
+    @Singleton
+    @Provides
+    fun provideSubwayService(retrofit: Retrofit): SubwayService = retrofit.create(SubwayService::class.java)
 
     @Provides
     @Singleton
