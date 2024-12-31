@@ -1,4 +1,4 @@
-package com.example.domain.repository.model
+package com.example.domain.model
 
 import kotlinx.serialization.SerialName
 

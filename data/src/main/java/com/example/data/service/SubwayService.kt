@@ -1,7 +1,7 @@
 package com.example.data.service
 
-import com.example.domain.repository.model.LineInfoResponse
-import com.example.domain.repository.model.StationDetailResponse
+import com.example.domain.model.LineInfoResponse
+import com.example.domain.model.StationDetailResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 

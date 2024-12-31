@@ -1,4 +1,4 @@
-package com.example.domain.repository.model
+package com.example.domain.model
 
 data class Result (
     val CODE: String,
