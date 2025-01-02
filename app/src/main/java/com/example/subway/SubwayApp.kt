@@ -5,7 +5,7 @@ import android.content.SharedPreferences
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class App : Application() {
+class SubwayApp : Application() {
 
     companion object {
         lateinit var sharedPreferences: SharedPreferences
