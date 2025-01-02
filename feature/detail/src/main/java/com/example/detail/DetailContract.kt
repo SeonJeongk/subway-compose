@@ -10,7 +10,7 @@ class DetailContract {
     data object DetailUiEvent : UiEvent
 
     sealed class DetailSideEffect : UiSideEffect {
-        object ShowToast : DetailSideEffect()
-        object NavigateToBack: DetailSideEffect()
+        data object ShowToast : DetailSideEffect()
+        data object NavigateToBack: DetailSideEffect()
     }
 }

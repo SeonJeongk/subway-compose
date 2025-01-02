@@ -11,7 +11,7 @@ class HomeContract {
     data object HomeUiEvent : UiEvent
 
     sealed class HomeSideEffect : UiSideEffect {
-        object ShowToast : HomeSideEffect()
-        object NavigateToDetail : HomeSideEffect()
+        data object ShowToast : HomeSideEffect()
+        data object NavigateToDetail : HomeSideEffect()
     }
 }
