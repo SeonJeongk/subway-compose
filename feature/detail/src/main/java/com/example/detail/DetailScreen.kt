@@ -17,13 +17,12 @@ import com.example.core.theme.SubwayTheme
 
 @Composable
 fun DetailScreen(
-    modifier: Modifier = Modifier,
     subwayLine: String?,
     viewModel: DetailViewModel = hiltViewModel(),
 ) {
 
     Scaffold(
-        modifier = modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize()
     ) { innerPadding ->
         Column(
             modifier = Modifier.fillMaxWidth(),

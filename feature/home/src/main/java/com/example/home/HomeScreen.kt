@@ -18,13 +18,12 @@ import com.example.core.theme.SubwayTheme
 
 @Composable
 fun HomeScreen(
-    modifier: Modifier = Modifier,
     onSubwayLineSelected: (String) -> Unit,
     viewModel: HomeViewModel = hiltViewModel(),
 ) {
 
     Scaffold(
-        modifier = modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize()
     ) { innerPadding ->
 
         Column(
