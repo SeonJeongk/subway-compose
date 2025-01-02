@@ -4,7 +4,7 @@ import com.example.core.base.UiEvent
 import com.example.core.base.UiSideEffect
 import com.example.core.base.UiState
 
-internal class DetailContract {
+class DetailContract {
     data object DetailUiState : UiState
 
     data object DetailUiEvent : UiEvent

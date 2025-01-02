@@ -5,7 +5,7 @@ import com.example.core.base.UiSideEffect
 import com.example.core.base.UiState
 
 
-internal class HomeContract {
+class HomeContract {
     data object HomeUiState : UiState
 
     data object HomeUiEvent : UiEvent

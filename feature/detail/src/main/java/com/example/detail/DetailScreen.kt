@@ -12,12 +12,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.core.theme.SubwayTheme
 
 @Composable
 fun DetailScreen(
     modifier: Modifier = Modifier,
     subwayLine: String?,
+    viewModel: DetailViewModel = hiltViewModel(),
 ) {
 
     Scaffold(
