@@ -5,5 +5,5 @@ import com.example.domain.model.StationDetailResponse
 
 interface MainRepository {
     suspend fun getAllLineInfo(): Result<LineInfoResponse>
-    suspend fun getStationInfo(): Result<StationDetailResponse>
+    suspend fun getStationInfo(date: String, line: String): Result<StationDetailResponse>
 }
