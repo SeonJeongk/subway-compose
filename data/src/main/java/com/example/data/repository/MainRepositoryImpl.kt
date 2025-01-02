@@ -12,27 +12,13 @@ class MainRepositoryImpl @Inject constructor(
     override suspend fun getAllLineInfo(): Result<LineInfoResponse> {
         return runCatching {
             subwayService.getAllLineInfo()
-        }.fold(
-            onSuccess = { response ->
-                Result.success(response)
-            },
-            onFailure = { exception ->
-                Result.failure(exception)
-            }
-        )
+        }
     }
 
     override suspend fun getStationInfo(date: String, line: String): Result<StationDetailResponse> {
         return runCatching {
             subwayService.getStationInfo(date, line)
-        }.fold(
-            onSuccess = { response ->
-                Result.success(response)
-            },
-            onFailure = { exception ->
-                Result.failure(exception)
-            }
-        )
+        }
     }
 
 }
