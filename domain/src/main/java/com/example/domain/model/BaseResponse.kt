@@ -1,9 +1,10 @@
 package com.example.domain.model
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Result (
-    val CODE: String,
-    val MESSAGE: String
+data class Result(
+    @SerialName("CODE") val code: String,
+    @SerialName("MESSAGE") val message: String,
 )
