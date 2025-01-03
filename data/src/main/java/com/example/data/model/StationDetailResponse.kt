@@ -1,5 +1,6 @@
-package com.example.domain.model
+package com.example.data.model
 
+import com.example.domain.model.DetailStationInfo
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -10,9 +11,9 @@ data class StationDetailResponse(
 
 @Serializable
 data class StationSearchResult(
-    @SerialName("list_total_count") val totalCount: Int? = null,
+    @SerialName("list_total_count") val totalCount: Int,
     @SerialName("RESULT") val result: Result,
-    val row: List<StationsInfo>? = null
+    val row: List<StationsInfo>,
 )
 
 @Serializable
@@ -24,3 +25,15 @@ data class StationsInfo(
     @SerialName("GTOFF_TNOPE") val getOffCount: Double,
     @SerialName("REG_YMD") val registrationDate: String,
 )
+
+fun StationDetailResponse.toDomain(): List<DetailStationInfo> {
+    return searchResult.row.map { result ->
+        DetailStationInfo(
+            usageDate = result.usageDate,
+            lineName = result.lineName,
+            stationName = result.stationName,
+            getOnCount = result.getOnCount,
+            getOffCount = result.getOffCount,
+        )
+    }
+}

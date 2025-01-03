@@ -1,9 +1,9 @@
 package com.example.domain.repository
 
-import com.example.domain.model.LineInfoResponse
-import com.example.domain.model.StationDetailResponse
+import com.example.domain.model.DetailStationInfo
+import com.example.domain.model.HomeLineInfo
 
 interface MainRepository {
-    suspend fun getAllLineInfo(): Result<LineInfoResponse>
-    suspend fun getStationInfo(date: String, line: String): Result<StationDetailResponse>
+    suspend fun getAllLineInfo(): Result<List<HomeLineInfo>>
+    suspend fun getStationInfo(date: String, line: String): Result<List<DetailStationInfo>>
 }

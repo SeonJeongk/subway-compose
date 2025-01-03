@@ -1,5 +1,6 @@
-package com.example.domain.model
+package com.example.data.model
 
+import com.example.domain.model.HomeLineInfo
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -25,3 +26,15 @@ data class StationInfo(
     @SerialName("STATION_NM_CHN") val stationNameChn: String,
     @SerialName("STATION_NM_JPN") val stationNameJpn: String,
 )
+
+fun LineInfoResponse.toDomain(): List<HomeLineInfo> {
+    return searchResult.row.map { result ->
+        HomeLineInfo(
+            lineNumber = result.lineNumber,
+            stationName = result.stationName,
+            stationNameEng = result.stationNameEng,
+            stationNameChn = result.stationNameChn,
+            stationNameJpn = result.stationNameJpn
+        )
+    }
+}
