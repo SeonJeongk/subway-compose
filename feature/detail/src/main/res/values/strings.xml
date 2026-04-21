@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="detail_line_info_title">호선 정보</string>
+    <string name="detail_station_info_empty">표시할 역 정보가 없습니다.</string>
+    <string name="detail_station_info_load_error">역 정보를 불러오지 못했습니다.</string>
+    <string name="detail_station_stats_load_error">승하차 통계를 불러오지 못했습니다. 역 정보만 표시합니다.</string>
+    <string name="detail_station_stats_empty_notice">이 호선은 승하차 통계가 제공되지 않습니다.</string>
+    <string name="detail_station_stats_unavailable">승하차 통계가 제공되지 않습니다.</string>
+    <string name="detail_station_stats_format">승차 %1$s명 / 하차 %2$s명</string>
+</resources>

@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.core"
+    namespace = "com.ssun.subway.core"
     compileSdk = 35
 
     defaultConfig {

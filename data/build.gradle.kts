@@ -13,7 +13,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.data"
+    namespace = "com.ssun.subway.data"
     compileSdk = 35
 
     defaultConfig {

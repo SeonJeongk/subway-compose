@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.home"
+    namespace = "com.ssun.subway.home"
     compileSdk = 35
 
     defaultConfig {
