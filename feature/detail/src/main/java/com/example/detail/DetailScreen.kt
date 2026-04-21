@@ -63,6 +63,10 @@ fun DetailScreen(
                 Text(text = message)
             }
 
+            uiState.noticeMessage?.let { message ->
+                Text(text = message)
+            }
+
             if (!uiState.isLoading && uiState.stationInfo.isEmpty() && uiState.errorMessage == null) {
                 Text(text = "표시할 역 정보가 없습니다.")
             }
@@ -124,9 +128,13 @@ private fun buildStationTitle(
 }
 
 private fun buildStatsText(
-    getOnCount: Long,
-    getOffCount: Long,
+    getOnCount: Long?,
+    getOffCount: Long?,
 ): String {
+    if (getOnCount == null || getOffCount == null) {
+        return "승하차 통계가 제공되지 않습니다."
+    }
+
     val formatter = NumberFormat.getNumberInstance(Locale.KOREA)
     return "승차 ${formatter.format(getOnCount)}명 / 하차 ${formatter.format(getOffCount)}명"
 }

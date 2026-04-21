@@ -6,14 +6,15 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class StationDetailResponse(
-    @SerialName("CardSubwayStatsNew") val searchResult: StationSearchResult,
+    @SerialName("CardSubwayStatsNew") val searchResult: StationSearchResult? = null,
+    @SerialName("RESULT") val result: Result? = null,
 )
 
 @Serializable
 data class StationSearchResult(
-    @SerialName("list_total_count") val totalCount: Int,
-    @SerialName("RESULT") val result: Result,
-    val row: List<StationsInfo>,
+    @SerialName("list_total_count") val totalCount: Int = 0,
+    @SerialName("RESULT") val result: Result? = null,
+    val row: List<StationsInfo> = emptyList(),
 )
 
 @Serializable
@@ -27,7 +28,7 @@ data class StationsInfo(
 )
 
 fun StationDetailResponse.toDomain(): List<DetailStationInfo> {
-    return searchResult.row.map { result ->
+    return searchResult?.row?.map { result ->
         DetailStationInfo(
             usageDate = result.usageDate,
             lineName = result.lineName,
@@ -35,5 +36,5 @@ fun StationDetailResponse.toDomain(): List<DetailStationInfo> {
             getOnCount = result.getOnCount.toLongOrNull() ?: 0L,
             getOffCount = result.getOffCount.toLongOrNull() ?: 0L,
         )
-    }
+    }.orEmpty()
 }

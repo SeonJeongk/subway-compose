@@ -32,6 +32,7 @@ class DetailViewModel @Inject constructor(
             copy(
                 selectedLine = subwayLine,
                 isLoading = true,
+                noticeMessage = null,
                 errorMessage = null,
             )
         }
@@ -46,24 +47,54 @@ class DetailViewModel @Inject constructor(
             val lineInfoResult = lineInfoDeferred.await()
             val stationDetailResult = stationDetailDeferred.await()
 
-            stationDetailResult
-                .onSuccess { detailInfo ->
-                    val englishNameMap = lineInfoResult
-                        .getOrDefault(emptyList())
-                        .filter { station -> station.lineNumber in selectedLineCandidates }
-                        .associate { station -> station.stationName to station.stationNameEng }
+            lineInfoResult
+                .onSuccess { lineInfo ->
+                    val filteredStations = lineInfo.filter { station ->
+                        station.lineNumber in selectedLineCandidates
+                    }
 
-                    updateState {
-                        copy(
-                            stationInfo = detailInfo.map { station ->
+                    val stationDetailMap = stationDetailResult
+                        .getOrDefault(emptyList())
+                        .associateBy { station -> station.stationName }
+
+                    val stationCards = if (stationDetailMap.isNotEmpty()) {
+                        stationDetailResult
+                            .getOrDefault(emptyList())
+                            .map { station ->
+                                val matchedStation = filteredStations.firstOrNull { info ->
+                                    info.stationName == station.stationName
+                                }
+
                                 DetailStationCardInfo(
                                     stationName = station.stationName,
-                                    stationNameEng = englishNameMap[station.stationName].orEmpty(),
+                                    stationNameEng = matchedStation?.stationNameEng.orEmpty(),
                                     getOnCount = station.getOnCount,
                                     getOffCount = station.getOffCount,
                                 )
-                            },
+                            }
+                    } else {
+                        filteredStations.map { station ->
+                            DetailStationCardInfo(
+                                stationName = station.stationName,
+                                stationNameEng = station.stationNameEng,
+                                getOnCount = null,
+                                getOffCount = null,
+                            )
+                        }
+                    }
+
+                    val noticeMessage = when {
+                        stationDetailResult.isFailure -> "승하차 통계를 불러오지 못했습니다. 역 정보만 표시합니다."
+                        stationDetailMap.isEmpty() -> "이 호선은 승하차 통계가 제공되지 않습니다."
+                        else -> null
+                    }
+
+                    updateState {
+                        copy(
+                            stationInfo = stationCards,
                             isLoading = false,
+                            noticeMessage = noticeMessage,
+                            errorMessage = null,
                         )
                     }
                 }
@@ -72,7 +103,8 @@ class DetailViewModel @Inject constructor(
                         copy(
                             stationInfo = emptyList(),
                             isLoading = false,
-                            errorMessage = throwable.message ?: "승하차 통계 정보를 불러오지 못했습니다.",
+                            noticeMessage = null,
+                            errorMessage = throwable.message ?: "역 정보를 불러오지 못했습니다.",
                         )
                     }
                 }

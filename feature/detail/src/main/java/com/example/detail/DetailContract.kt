@@ -7,14 +7,15 @@ class DetailContract {
     data class DetailStationCardInfo(
         val stationName: String,
         val stationNameEng: String,
-        val getOnCount: Long,
-        val getOffCount: Long,
+        val getOnCount: Long?,
+        val getOffCount: Long?,
     )
 
     data class DetailUiState(
         val selectedLine: String = "",
         val stationInfo: List<DetailStationCardInfo> = emptyList(),
         val isLoading: Boolean = false,
+        val noticeMessage: String? = null,
         val errorMessage: String? = null,
     ) : UiState
 
