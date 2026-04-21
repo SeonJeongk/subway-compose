@@ -4,11 +4,16 @@ import com.example.core.base.UiEvent
 import com.example.core.base.UiSideEffect
 import com.example.core.base.UiState
 
-
 class HomeContract {
-    data object HomeUiState : UiState
+    data class HomeUiState(
+        val subwayLines: List<String> = emptyList(),
+        val isLoading: Boolean = false,
+        val errorMessage: String? = null,
+    ) : UiState
 
-    data object HomeUiEvent : UiEvent
+    sealed interface HomeUiEvent : UiEvent {
+        data object LoadSubwayLines : HomeUiEvent
+    }
 
     sealed class HomeSideEffect : UiSideEffect {
         data object ShowToast : HomeSideEffect()
