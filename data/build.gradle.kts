@@ -7,11 +7,13 @@ properties.load(FileInputStream("$rootDir/local.properties"))
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.hilt)
+    alias(libs.plugins.kotlin.serialization)
+    id("com.google.dagger.hilt.android")
+    id("kotlin-kapt")
 }
 
 android {
-    namespace = "com.example.data"
+    namespace = "com.ssun.subway.data"
     compileSdk = 35
 
     defaultConfig {
@@ -60,4 +62,5 @@ dependencies {
     implementation(libs.serialization)
     implementation(libs.serialization.converter)
     implementation(libs.bundles.coroutine)
+    kapt(libs.hilt.compiler)
 }

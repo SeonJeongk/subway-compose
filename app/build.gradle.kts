@@ -1,19 +1,20 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.hilt)
+    id("com.google.dagger.hilt.android")
+    id("kotlin-kapt")
 }
 
 android {
-    namespace = "com.example.subway"
+    namespace = "com.ssun.subway"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.subway"
+        applicationId = "com.ssun.subway"
         minSdk = 24
         targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 2
+        versionName = "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -63,16 +64,18 @@ dependencies {
     implementation(project(":data"))
     implementation(project(":core"))
     implementation(project(":domain"))
+    implementation(project(":feature:main"))
     implementation(project(":feature:home"))
     implementation(project(":feature:detail"))
 
     implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.runtimeCompose)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.material3)
     implementation(libs.bundles.compose)
     implementation(libs.bundles.hilt)
+    kapt(libs.hilt.compiler)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
