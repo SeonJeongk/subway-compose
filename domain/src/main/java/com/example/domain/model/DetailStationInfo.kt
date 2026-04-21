@@ -4,6 +4,6 @@ data class DetailStationInfo(
     val usageDate: String,
     val lineName: String,
     val stationName: String,
-    val getOnCount: Double,
-    val getOffCount: Double,
+    val getOnCount: Long,
+    val getOffCount: Long,
 )
